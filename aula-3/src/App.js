@@ -1,4 +1,5 @@
 import React from "react";
+import CardPokemon from "./components/pokemon";
 
 function App() {
 
@@ -29,47 +30,27 @@ function App() {
   }
 
 
-  return (
-    pokemon.sprites ?
+  return pokemon.sprites ? (
 
       <div className="container">
-        <div className="row">
+        <CardPokemon>
+          image={pokemon.sprites.front_default}
+          name={pokemon.name}
+          type={pokemon.type}
+          abilitie={pokemon.abilitie}
+        </CardPokemon>
 
-          <div className="col-5"> 
-            <img src={pokemon.sprites.front_default} />
-          </div>
-          
-          <h3>{pokemon.name}</h3>
-
-          <hr className="mt-3 mb-3"></hr>
-
-          <div>
-            <p>Type:</p> 
-            {pokemon.types.map((data) => 
-              <div>{data.type.name}</div> 
-            )}
-          </div>
-
-          <hr className="mt-3 mb-3"></hr>
-
-          <div className="col-5">
-            <p>Abilities:</p>
-            {pokemon.abilities.map((data) => (
-                <div>{data.ability.name}</div>
-            ))}
-          </div>
-
-              <button onClick={Proximo}>Próximo</button>
-              <button onClick={Anterior}>Anterior</button>
-        </div>
-
-
+        <button className="mt-3" onClick={Proximo}>Próximo</button>
+        <button className="mt-3" onClick={Anterior}>Anterior</button>
         
       </div>
-    :
+
+  ) : (
+
       <div>
         <button onClick={Proximo}>Carregar</button>
       </div>
+
   );
 }
 
